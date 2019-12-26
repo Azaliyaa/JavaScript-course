@@ -10,14 +10,28 @@ appData = {
   savings: false
 }
 
-expense1 = prompt("Введите обязательную статью расходов в этом месяце");
-sum1 = prompt("Во сколько обойдется?");
-expense2 = prompt("Введите обязательную статью расходов в этом месяце");
-sum2 = prompt("Во сколько обойдется?");
+for (let i = 0; i < 2; i++) {
+  expense = prompt("Введите обязательную статью расходов в этом месяце");
+  sum = prompt("Во сколько обойдется?");
 
-appData.expenses[expense1] = sum1;
-appData.expenses[expense2] = sum2;
+  if ( (typeof(expense)) === 'string' && (typeof(expense)) != null && (typeof(sum)) != null
+  && expense != '' && sum != '' && expense.length < 50) {
+    appData.expenses[expense] = sum;
+    console.log('Done');
+  }
+}
 
-alert("Ваш бюджет на день " + money/30 + " рублей");
+appData.moneyPerDay = money/30;
 
+alert("Ваш бюджет на день " + appData.moneyPerDay + " рублей");
+
+if (appData.moneyPerDay < 100) {
+  console.log("Минимальный уровень достатка");
+} else if (appData.moneyPerDay > 100 && appData.moneyPerDay < 2000) {
+  console.log("Средний уровень достатка");
+} else if (appData.moneyPerDay > 2000) {
+  console.log("Высокий уровень достатка");
+} else {
+  console.log("Произошла ошибка");
+}
 console.log(appData);
